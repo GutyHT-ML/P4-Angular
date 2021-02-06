@@ -13,7 +13,7 @@ import { PostService } from '../services/post.service';
   styleUrls: ['./discussion.component.css']
 })
 export class DiscussionComponent implements OnInit {
-  post : Post
+  post !: Post
   post_id !:number
   comments !: Comment[]
   constructor(private route: ActivatedRoute, 
@@ -29,7 +29,7 @@ export class DiscussionComponent implements OnInit {
   ngOnInit(): void {
     this.post_id = Number(this.route.snapshot.paramMap.get('id'))
     this.postSvc.getPost(this.post_id).subscribe(
-      val => {this.post = val},
+      val => {this.post = val; console.log(val)},
       e => {console.log(e)},
       () => {console.log(this.post.id)}
       )
@@ -39,7 +39,7 @@ export class DiscussionComponent implements OnInit {
   submitComment():void{
     let title = this.commentForm.get('title').value
     let description = this.commentForm.get('description').value
-    this.commentSvc.createComment(this.post_id, title, description).subscribe(
+    this.commentSvc.createComment(this.post.id, title, description).subscribe(
       val => {this.comments.push(val)},
       (e) => {console.log(e)},
       () => {console.log("Comment submitted")}

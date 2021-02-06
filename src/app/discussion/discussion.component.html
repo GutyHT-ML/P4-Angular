@@ -15,19 +15,19 @@
         <mat-card-header>
             <mat-card-title>
                 <h1>
-                    {{post.title}}
+                    {{post?.title}} 
                 </h1>
                 <h2>
-                    by {{post.user_id}}
+                    by {{post?.user_id}}
                 </h2>
             </mat-card-title>
         </mat-card-header>
         <mat-card-content>
             <p>
-                {{post.description}}
+                {{post?.description}}
             </p>
             <p>
-                {{post.created_at}}
+                {{post?.created_at}}
             </p>
         </mat-card-content>
         <mat-card-footer>

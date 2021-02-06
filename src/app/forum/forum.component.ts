@@ -11,6 +11,7 @@ import { PostService } from '../services/post.service';
 export class ForumComponent implements OnInit {
   posts!:Post[]
   constructor(private post: PostService) { }
+  //
   postForm = new FormGroup({
     title: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required)
