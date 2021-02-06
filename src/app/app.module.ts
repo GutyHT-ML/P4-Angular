@@ -13,8 +13,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatButtonModule} from '@angular/material/button';
 import { ForumComponent } from './forum/forum.component';
 import { PostComponent } from './post/post.component';
-import { CommentComponent } from './comment/comment.component';
 import { SignupComponent } from './signup/signup.component';
+import { DiscussionComponent } from './discussion/discussion.component';
+import { CommentComponent } from './comment/comment.component';
 
 const materialModules = [
   MatCardModule,
@@ -27,8 +28,9 @@ const materialModules = [
     LoginComponent,
     ForumComponent,
     PostComponent,
-    CommentComponent,
-    SignupComponent
+    SignupComponent,
+    DiscussionComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,

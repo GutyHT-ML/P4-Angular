@@ -21,6 +21,10 @@ export class ForumComponent implements OnInit {
   submitPost(){
     let title = this.postForm.get('title').value
     let description = this.postForm.get('description').value
-    this.post.createPost(title, description).subscribe(val => {console.log(val)})
+    this.post.createPost(title, description).subscribe(
+      val => {this.posts.push(val)},
+      e => {console.log(e.message)},
+      () => {console.log("Post submitted")}
+      )
   }
 }

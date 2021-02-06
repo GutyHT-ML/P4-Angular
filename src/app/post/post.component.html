@@ -3,7 +3,9 @@
         <mat-card-header>
             <mat-card-title>
                 <p *ngIf="!editor">
-                    {{post.title}}
+                    <button mat-raised-button (click)="seeDiscussion()">                    
+                        {{post.title}}
+                    </button>
                 </p>
                 <input formControlName="title" type="text" *ngIf="editor">
             </mat-card-title>
@@ -19,8 +21,8 @@
                 {{post.created_at}}
             </p>
             <button mat-button (click)="enableEditor()">Edit</button>
-            <button *ngIf="!editor" mat-button (click)="deletePost()">Delete</button>
-            <button *ngIf="editor" mat-button (click)="savePost()">Save</button>
+            <button *ngIf="!editor" routerLink="/forum" mat-button (click)="deletePost()">Delete</button>
+            <button *ngIf="editor" routerLink="/forum" mat-button (click)="savePost()">Save</button>
         </mat-card-footer>
     </form>
 </mat-card>

@@ -33,4 +33,7 @@ export class PostComponent implements OnInit {
   deletePost():void{
     this.postSvc.deletePost(this.post.id).subscribe(val => {console.log(val)})
   }
+  seeDiscussion():void{
+    this.router.navigate(['discussion', this.post.id])
+  }
 }

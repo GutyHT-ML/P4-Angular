@@ -1,1 +1,15 @@
-<p>comment works!</p>
+<li>
+    <form [formGroup]="editForm">
+        <h4>
+            {{comment.title}}
+            <input type="text" *ngIf="editor" formControlName="title">
+        </h4>
+        <h5>
+            {{comment.description}} <br>
+            <input type="text" *ngIf="editor" formControlName="description">
+        </h5>    
+    </form>
+    <button mat-button (click)="enableEditor()">Edit</button>
+    <button mat-button (click)="deleteComment()" *ngIf="!editor">Delete</button>
+    <button mat-button (click)="saveComment()" *ngIf="editor">Save</button>
+</li>

@@ -18,6 +18,9 @@ export class PostService {
   deletePost(id:number): Observable<any>{
     return this.http.delete<any>(this.apiUrl+"posts/"+id+"/delete")
   }
+  getPost(id:number):Observable<Post>{
+    return this.http.get<Post>(this.apiUrl+"posts/"+id)
+  }
   showPosts(): Observable<Post[]>{
     return this.http.get<Post[]>(this.apiUrl+"posts/show")
   }

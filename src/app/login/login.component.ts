@@ -27,10 +27,10 @@ export class LoginComponent implements OnInit {
       this.password = this.loginForm.get('password').value
       this.user.logIn(this.email, this.password).subscribe(
         val => {localStorage.setItem('token', val.token)},
-        (e:any) => {console.log(e.error['message'])}
+        (e:any) => {console.log(e.error['message'])},
+        () => {this.router.navigate(['forum'])}
         )
       console.log(localStorage.getItem('token'))
-      this.router.navigate(['forum'])
     }
   }
 }

@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'P4';
+  logOut(){
+    localStorage.removeItem('token')
+  }
 }
