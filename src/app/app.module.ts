@@ -3,25 +3,18 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from "@angular/forms";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TokenInterceptorService } from './services/tokeninterceptor.service';
 
-import {MatCardModule} from '@angular/material/card';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatButtonModule} from '@angular/material/button';
-import { ForumComponent } from './forum/forum.component';
-import { PostComponent } from './post/post.component';
-import { SignupComponent } from './signup/signup.component';
-import { DiscussionComponent } from './discussion/discussion.component';
-import { CommentComponent } from './comment/comment.component';
+import { ForumComponent } from './components/forum/forum.component';
+import { PostComponent } from './components/post/post.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { DiscussionComponent } from './components/discussion/discussion.component';
+import { CommentComponent } from './components/comment/comment.component';
+import { MaterialModule } from './material/material.module';
 
-const materialModules = [
-  MatCardModule,
-  MatButtonModule,
-  MatGridListModule
-]
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +31,7 @@ const materialModules = [
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    materialModules
+    MaterialModule
   ],
   providers: [
     {

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Comment } from '../interfaces/comment';
-import { CommentService } from '../services/comment.service';
+import { Comment } from '../../models/comment';
+import { CommentService } from '../../services/comment.service';
 
 @Component({
   selector: 'app-comment',

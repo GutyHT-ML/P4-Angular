@@ -2,10 +2,10 @@ import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Comment } from '../interfaces/comment';
-import { Post } from '../interfaces/post';
-import { CommentService } from '../services/comment.service';
-import { PostService } from '../services/post.service';
+import { Comment } from '../../models/comment';
+import { Post } from '../../models/post';
+import { CommentService } from '../../services/comment.service';
+import { PostService } from '../../services/post.service';
 
 @Component({
   selector: 'app-discussion',
@@ -16,8 +16,8 @@ export class DiscussionComponent implements OnInit {
   post !: Post
   post_id !:number
   comments !: Comment[]
-  constructor(private route: ActivatedRoute, 
-    private postSvc: PostService, 
+  constructor(private route: ActivatedRoute,
+    private postSvc: PostService,
     private commentSvc: CommentService,
     private router: Router
     ) { }
@@ -44,6 +44,6 @@ export class DiscussionComponent implements OnInit {
       (e) => {console.log(e)},
       () => {console.log("Comment submitted")}
     )
-    
+
   }
 }

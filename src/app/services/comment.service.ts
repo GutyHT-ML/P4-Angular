@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from 'rxjs';
 import { environment } from "src/environments/environment";
 import { map } from "rxjs/operators";
-import { Comment } from '../interfaces/comment';
+import { Comment } from '../models/comment';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +25,7 @@ export class CommentService {
     return this.http.put<Comment>(
       this.apiUrl+"posts/"+post_id+"/comments/"+comment_id+"/edit",
       {title, description}
-    ) 
+    )
   }
   deleteComment(post_id:number, comment_id:number):Observable<any>{
     return this.http.delete<any>(

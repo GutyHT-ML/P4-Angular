@@ -1,8 +1,0 @@
-<form [formGroup]="signupForm" (ngSubmit)="signUp()">
-    <input formControlName="name" type="text" placeholder="Introduce tu nombre" required><br>
-    <input formControlName="email" type="text" placeholder="Introduce tu email" required><br>
-    <input formControlName="password" type="password" placeholder="Introduce tu contraseña" required><br>
-    <button type="submit">Login</button><br>
-    {{signupForm.status}} <br>
-    <!-- Aber: {{test}} -->
-</form>
