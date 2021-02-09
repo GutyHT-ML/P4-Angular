@@ -1,0 +1,41 @@
+<mat-card class="post-card">
+  <mat-card-title>Start a new discussion</mat-card-title>
+  <form class="example-form" [formGroup]="postForm" autocomplete="off" (ngSubmit)="submitPost()">
+    <mat-form-field class="example-full-width">
+      <mat-label>Add a title</mat-label>
+      <textarea matInput placeholder="Ex. My thoughts on pizza" formControlName="title"></textarea>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Add a description</mat-label>
+      <textarea #message maxlength="256" matInput placeholder="Ex. It makes me feel..." formControlName="description"></textarea>
+      <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+    </mat-form-field>
+    <button mat-raised-button color="accent" type="submit">Add post</button>
+  </form>
+</mat-card>
+<mat-card *ngIf="posts" class="post-card">
+  <mat-list>
+    <div *ngFor="let post of posts">
+      <div class="content">
+        <mat-list-item>
+          <div class="post" (click)="onSelect(post)" [selPost]="post">
+            <mat-card-title>{{post?.title}}</mat-card-title>
+            <mat-card-subtitle *ngIf="post.user">by {{post?.user?.username}}</mat-card-subtitle>
+            <mat-card-subtitle *ngIf="!post.user">by {{username}}</mat-card-subtitle>
+            <mat-card-content>
+              <p>{{post?.description}}</p>
+            </mat-card-content>
+          </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
+    </div>
+    <mat-list-item>
+      <p style="text-align: end;">This is the end of the feed!</p>
+    </mat-list-item>
+  </mat-list>
+</mat-card>
+
+
+
+

@@ -3,7 +3,8 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from 'rxjs';
 import { environment } from "src/environments/environment";
 import { map } from "rxjs/operators";
-import { Comment } from '../models/comment';
+import { Comment } from '../models/post';
+import { PcData } from '../models/pc-data';
 
 @Injectable({
   providedIn: 'root'
@@ -13,18 +14,17 @@ export class CommentService {
   constructor(private http:HttpClient) { }
 
   showComments(id:number):Observable<Comment[]>{
-    return this.http.get<Comment[]>(this.apiUrl+"posts/"+id+"/comments")
+    return this.http.get<Comment[]>(this.apiUrl+"posts/"+id+"/comments").pipe(
+      map((x:any) => x))
   }
-  createComment(post_id:number, title:string, description:string):Observable<Comment>{
+  createComment(post_id:number, data:PcData):Observable<Comment>{
     return this.http.post<Comment>(
-      this.apiUrl+"posts/"+post_id+"/comments/create",
-      {title, description}
+      this.apiUrl+"posts/"+post_id+"/comments/create",data
     )
   }
-  editComment(post_id:number, comment_id:number, title:string, description:string):Observable<Comment>{
+  editComment(post_id:number, comment_id:number, data:PcData):Observable<Comment>{
     return this.http.put<Comment>(
-      this.apiUrl+"posts/"+post_id+"/comments/"+comment_id+"/edit",
-      {title, description}
+      this.apiUrl+"posts/"+post_id+"/comments/"+comment_id+"/edit",data
     )
   }
   deleteComment(post_id:number, comment_id:number):Observable<any>{

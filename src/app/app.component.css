@@ -1,9 +1,10 @@
 .bg {
-  background-image: url("https://images.hdqwalls.com/wallpapers/desert-nights-moon-5k-8n.jpg");
+  background-image: url(../assets/background.jpg);
 
   background-size: cover;
   top: 0;
   left: 0;
+  bottom: 0;
   min-width: 100%;
   min-height: 100%;
 }

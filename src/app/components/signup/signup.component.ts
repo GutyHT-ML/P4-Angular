@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { User } from 'src/app/models/user';
+import { SignupData } from 'src/app/models/signup-data';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { UserService } from '../../services/user.service';
 })
 export class SignupComponent implements OnInit {
   signUpForm: FormGroup;
-  user: User;
+  data: SignupData;
   hide = true;
   /*name!:string
   email!:string
@@ -36,7 +36,7 @@ export class SignupComponent implements OnInit {
       return
     }
     this.setUser()
-    this.userService.signUp(this.user).pipe(first()).subscribe(
+    this.userService.signUp(this.data).pipe(first()).subscribe(
       () => {
         this.router.navigate(['/login'])
       },
@@ -54,7 +54,7 @@ export class SignupComponent implements OnInit {
   }
 
   setUser(): void{
-    this.user = {
+    this.data = {
       username: this.signUpForm.get('username').value,
       email: this.signUpForm.get('email').value,
       password: this.signUpForm.get('password').value

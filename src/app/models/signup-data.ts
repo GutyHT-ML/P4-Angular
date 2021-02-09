@@ -1,4 +1,4 @@
-export interface User {
+export interface SignupData {
   username: String,
   email: String,
   password: String
