@@ -14,6 +14,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { DiscussionComponent } from './components/discussion/discussion.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { MaterialModule } from './material/material.module';
+import {CookieService} from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MaterialModule } from './material/material.module';
     MaterialModule
   ],
   providers: [
+    CookieService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
