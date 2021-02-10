@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Post } from '../../models/post';
 import { PostService } from '../../services/post.service';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-forum',
@@ -10,7 +11,7 @@ import { PostService } from '../../services/post.service';
 })
 export class ForumComponent implements OnInit {
   posts!:Post[]
-  constructor(private post: PostService) { }
+  constructor(private post: PostService, private cookie: CookieService) { }
   //
   postForm = new FormGroup({
     title: new FormControl('', Validators.required),
@@ -27,5 +28,8 @@ export class ForumComponent implements OnInit {
       e => {console.log(e.message)},
       () => {console.log("Post submitted")}
       )
+  }
+  logOut(){
+    this.cookie.delete('token')
   }
 }

@@ -6,6 +6,7 @@ import { Comment } from '../../models/comment';
 import { Post } from '../../models/post';
 import { CommentService } from '../../services/comment.service';
 import { PostService } from '../../services/post.service';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-discussion',
@@ -19,7 +20,8 @@ export class DiscussionComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private postSvc: PostService,
     private commentSvc: CommentService,
-    private router: Router
+    private router: Router,
+    private cookie: CookieService
     ) { }
   commentForm = new FormGroup({
     title: new FormControl(''),
@@ -45,5 +47,8 @@ export class DiscussionComponent implements OnInit {
       () => {console.log("Comment submitted")}
     )
 
+  }
+  logOut(){
+    this.cookie.delete('token')
   }
 }
