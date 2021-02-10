@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { PcData } from 'src/app/models/pc-data';
 import { Post } from 'src/app/models/post';
 import { PostService } from 'src/app/services/post.service';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-home',
@@ -15,11 +16,12 @@ export class HomeComponent implements OnInit {
   posts!:Post[]
   selPost!:Post
   postData!:PcData
-  username:String = localStorage.getItem('username')
+  username!:String
   postForm:FormGroup
 
-  constructor(private postService: PostService, private router:Router, private formB:FormBuilder) {
+  constructor(private postService: PostService, private router:Router, private formB:FormBuilder, private cookie: CookieService) {
     this.buildForm()
+    this.username = this.cookie.get('username')
    }
 
   ngOnInit(): void {
@@ -61,5 +63,12 @@ export class HomeComponent implements OnInit {
     this.selPost = post;
     this.router.navigate(['detail', this.selPost.id])
   }
+
+  logOut(){
+    this.cookie.delete('token')
+    this.cookie.delete('username')
+    this.cookie.delete('id')
+  }
+
 
 }

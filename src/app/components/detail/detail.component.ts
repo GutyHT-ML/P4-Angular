@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { first } from 'rxjs/operators';
 import { PcData } from 'src/app/models/pc-data';
 import { Post, Comment, User } from 'src/app/models/post';
@@ -27,13 +28,13 @@ export class DetailComponent implements OnInit {
   selComment!:Comment
 
   constructor(private router: Router, private route: ActivatedRoute, private postService: PostService,
-              private commentService: CommentService, private formB:FormBuilder){
+              private commentService: CommentService, private formB:FormBuilder, private cookie: CookieService){
       this.buildForm();
   }
 
   ngOnInit(): void {
     this.post_id = Number(this.route.snapshot.paramMap.get('id'));
-    this.id = Number(localStorage.getItem('id'));
+    this.id = Number(this.cookie.get('id'));
     this.postService.getPost(this.post_id).subscribe(
       val => {
         this.post = val;
@@ -159,6 +160,12 @@ export class DetailComponent implements OnInit {
       error => {
         console.log(error)
       })
+  }
+
+  logOut(){
+    this.cookie.delete('token')
+    this.cookie.delete('username')
+    this.cookie.delete('id')
   }
 
   arrayRemove(arr, value){

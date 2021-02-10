@@ -1,3 +1,4 @@
+<button routerLink="/login" (click)="logOut()">LogOut</button>
 <mat-card class="post-card">
   <mat-card-title>Start a new discussion</mat-card-title>
   <form class="example-form" [formGroup]="postForm" autocomplete="off" (ngSubmit)="submitPost()">

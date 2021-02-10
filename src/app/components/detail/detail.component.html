@@ -1,3 +1,4 @@
+<button routerLink="/login" (click)="logOut()">LogOut</button>
 <mat-card class="post-card">
   <form class="example-form" [formGroup]="editPostForm" autocomplete="off">
     <mat-card-title *ngIf=!editing>{{post?.title}}</mat-card-title>

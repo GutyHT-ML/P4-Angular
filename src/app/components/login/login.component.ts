@@ -5,6 +5,7 @@ import { error } from 'protractor';
 import { LoginData } from 'src/app/models/login-data';
 import { environment } from 'src/environments/environment';
 import { UserService } from '../../services/user.service';
+import {CookieService} from 'ngx-cookie-service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   logInForm: FormGroup;
   data: LoginData;
   hide = true;
-  constructor(private userService: UserService, private router: Router, private formB: FormBuilder) {
+  constructor(private userService: UserService, private router: Router, private formB: FormBuilder, private cookie: CookieService) {
     this.buildForm();
   }
 
@@ -32,11 +33,17 @@ export class LoginComponent implements OnInit {
     this.setData()
     this.userService.logIn(this.data).subscribe(
       val => {
+        /*
         localStorage.setItem('token', val.token.token)
         localStorage.setItem('username', val.user.username)
         localStorage.setItem('id', String(val.user.id))
         this.router.navigate(['home'])
-        console.log(localStorage.getItem('token'))
+        console.log(localStorage.getItem('token'))*/
+        this.cookie.set('token', val.token.token)
+        this.cookie.set('username', val.user.username)
+        this.cookie.set('id', String(val.user.id))
+        this.router.navigate(['home'])
+        console.log("Token: "+this.cookie.get('token'))
       },
       error => {
         console.log(error)

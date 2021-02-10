@@ -12,6 +12,8 @@ import { SignupComponent } from './components/signup/signup.component';
 import { MaterialModule } from './material/material.module';
 import { HomeComponent } from './components/home/home.component';
 import { DetailComponent } from './components/detail/detail.component';
+import {CookieService} from 'ngx-cookie-service';
+import { AuthGuard } from './guard/auth.guard';
 
 @NgModule({
   declarations: [
@@ -30,11 +32,13 @@ import { DetailComponent } from './components/detail/detail.component';
     MaterialModule
   ],
   providers: [
+    CookieService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true
-    }
+    },
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
